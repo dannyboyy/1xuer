@@ -31,9 +31,17 @@
                   <li>
                       <a href="/#contact">联系我们</a>
                   </li>
-                  <li>
-                      <a href="/users/sign_in">登录</a>
-                  </li>
+                  <% if user_signed_in? %>
+                    <li><%= link_to "我的账户", edit_user_registration_path %></li>
+                    <li><%= link_to "离开", destroy_user_session_path, method: :delete %></li>
+                  <% else %>
+                    <li>
+                        <%= link_to "注册", new_user_registration_path %></a>
+                    </li>
+                    <li>
+                        <%= link_to "登录", new_user_session_path %>
+                    </li>
+                  <% end %>
               </ul>
           </div>
           <!-- /.navbar-collapse -->
